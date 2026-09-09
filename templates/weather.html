@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌤️ Weather Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🌤️ Weather Dashboard</h1>
+            <p>Dự báo thời tiết chính xác từ Open-Meteo</p>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="searchInput" 
+                class="search-input" 
+                placeholder="Nhập tên thành phố..."
+                autocomplete="off"
+            >
+            <button id="searchBtn" class="search-btn">🔍 Tìm kiếm</button>
+            <div id="suggestions" class="suggestions"></div>
+        </div>
+
+        <!-- Loading -->
+        <div id="loading" class="loading" style="display: none;">
+            ⏳ Đang tải dữ liệu...
+        </div>
+
+        <!-- Error Message -->
+        <div id="error" class="error-message" style="display: none;"></div>
+
+        <!-- Current Weather -->
+        <div id="currentWeather" class="current-weather" style="display: none;">
+            <div class="weather-card">
+                <div class="city-info">
+                    <h2 id="cityName"></h2>
+                    <p id="updateTime"></p>
+                </div>
+                
+                <div class="weather-main">
+                    <div class="temperature-section">
+                        <div class="temperature">
+                            <span id="temp">--</span>
+                            <span class="unit">°C</span>
+                        </div>
+                        <div class="weather-icon" id="weatherIcon">🌤️</div>
+                    </div>
+                    
+                    <div class="weather-description" id="description"></div>
+                </div>
+
+                <div class="weather-details">
+                    <div class="detail-item">
+                        <span class="detail-label">💧 Độ ẩm</span>
+                        <span class="detail-value" id="humidity">--%</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">💨 Gió</span>
+                        <span class="detail-value" id="windSpeed">-- km/h</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">☔ Mưa</span>
+                        <span class="detail-value" id="precipitation">-- mm</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hourly Forecast -->
+        <div id="hourlySection" class="forecast-section" style="display: none;">
+            <h3>⏰ Dự báo theo giờ</h3>
+            <div class="hourly-forecast" id="hourlyForecast"></div>
+        </div>
+
+        <!-- Daily Forecast -->
+        <div id="dailySection" class="forecast-section" style="display: none;">
+            <h3>📅 Dự báo 7 ngày</h3>
+            <div class="daily-forecast" id="dailyForecast"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Dữ liệu từ <a href="https://open-meteo.com/" target="_blank">Open-Meteo</a> | © 2024 Weather Dashboard</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
